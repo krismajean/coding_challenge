@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, request, render_template
 from collections import Counter, defaultdict
 
 app = Flask(__name__)
@@ -24,30 +24,51 @@ def print_dictionary(d, i=1):
                 output+= ' ' + str(v)
         return output
 
+def word_list(dl,d):
+    ## TO DO: get items from deep search to add to the dl
+    for k, v in iter(d.items()):
+        if isinstance(v, dict):
+                word_list(dl,v)
+        else:
+            ## split string and extend list
+            dl.extend(v.split())
+    return dl
+
+def most_common_word(d):
+    wordcount = {}
+    ## create a dictionary of words from d1 and generate frequency count
+    dl =[]
+    wordlist = word_list(dl,d)
+    return Counter(wordlist).most_common(1)[0][0]
+
 @app.route('/set/<key>/<value>')
 def set(key=None, value=None):
     test[key] = value
-    return render_template('set.html', key=key, value=value)
+    return render_template('set.html', title="Set Key",key=key, value=value)
 
 @app.route('/del/<key>')
 def delete(key=None):
     try:
         removed = test.pop(key)
-        return render_template('del.html', key=key)
+        return render_template('del.html', title="Delete Key", key=key)
     except:
         return '<h1>Element %s does not exist</h1>' % key
-
 
 @app.route('/')
 def index():
     #return render_template('del.html', name=key)
-    return render_template('index.html', text=test)
-    #print_dictionary(test)
+    mostCommon = most_common_word(test)
+    return render_template('index.html', text=test, mostCommon=mostCommon)
 
-# @app.route('/hello')
-# @app.route('/hello/<name>')
-# def hello(name=None):
-#     return render_template('hello.html', name=name)
+@app.route('/pretty')
+def pretty():
+    #return render_template('del.html', name=key)
+    return render_template('pretty.html', text=test)
+
+@app.route('/working')
+def working():
+    return render_template('working.html') #render_template('pretty.html', text=test)
+
 
 if __name__ == '__main__':
     app.run(debug=True)  ## DO NOT KEEP TRUE WHEN PUBLISHING
