@@ -13,5 +13,28 @@
       </li>
   {% endif %}
 </div>
+<hr>
 
+<form>
+    Key: <input command="text" id="key">
+    Value: <input command="text" id="value">
+    <input type="submit" class="set" value="Set">
+</form>
+<form>
+    Key: <input command="text">
+    <input type="submit" class="delete" value="Delete">
+</form>
+
+{% endblock %}
+
+{% block ui %}
+<form>
+    <input command="text">
+    <input command="block">
+    <input type="submit" class="set" value="Set">
+</form>
+<form>
+    <input command="text">
+    <input type="submit" class="delete" value="Delete">
+</form>
 {% endblock %}
