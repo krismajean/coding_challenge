@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+  {% if text %}
+    {% for key, value in text.items() %}
+      <li>{{ key }}: {{value}}
+    {% endfor %}
+      </li>
+  {% endif %}
+</div>
+{% endblock %}

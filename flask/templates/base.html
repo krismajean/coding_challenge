@@ -1,0 +1,19 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Agora Coding Challenge</title>
+        {% else %}
+        <title>Agora - Coding Challenge</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+          <div>
+              Agora:
+              <a href="{{ url_for('index') }}">Home</a>
+          </div>
+        </div>
+         <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>

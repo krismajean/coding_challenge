@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+  {% if key %}
+    <h1> Key {{ key }} removed </h1>
+  {% else %}
+    <h1> Key Not Detected </h1>
+  {% endif %}
+</div>
+{% endblock %}
