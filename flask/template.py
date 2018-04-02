@@ -25,7 +25,6 @@ def print_dictionary(d, i=1):
         return output
 
 def word_list(wordBank,dictionary):
-    ## TO DO: get items from deep search to add to the dl
     for key, value in iter(dictionary.items()):
         if isinstance(value, dict):
                 word_list(wordBank,value)
@@ -54,7 +53,6 @@ def delete(key=None):
 
 @app.route('/')
 def index():
-    #return render_template('del.html', name=key)
     mostCommon = most_common_word(test)
     return render_template('index.html', text=test, mostCommon=mostCommon)
 
