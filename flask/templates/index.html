@@ -2,6 +2,10 @@
 
 {% block content %}
 <div>
+  <h2> Most common word: {{ mostCommon }} </h2>
+  <hr>
+</div>
+<div>
   {% if text %}
     {% for key, value in text.items() %}
       <li>{{ key }}: {{value}}
@@ -9,4 +13,5 @@
       </li>
   {% endif %}
 </div>
+
 {% endblock %}
