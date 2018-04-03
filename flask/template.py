@@ -59,10 +59,15 @@ def most_common_word(nested_dictionary):
     wordlist = word_list(empty_word_list,nested_dictionary)
     return Counter(wordlist).most_common(1)[0][0]
 
+@app.route('/set/')
+@app.route('/set/<key>/')
 @app.route('/set/<key>/<value>')
 def set(key=None, value=None):
-    dictionary[key] = value
-    return render_template('set.html', title="Set Key",key=key, value=value)
+    try:
+        dictionary[key] = value
+        return render_template('set.html', title="Set Key",key=key, value=value)
+    except:
+        return
 
 @app.route('/del')
 @app.route('/del/<key>')
