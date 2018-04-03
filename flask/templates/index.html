@@ -8,14 +8,25 @@
 <div class="container" id="pretty_print">
   {% if text %}
 
-  {% for key,value in text.items() recursive %}
-      <li>{{ key }} <!--Top level key-->
+  <!-- Optional list formatting -->
+  <!-- {% for key,value in text.items() recursive %}
+      <li>{{ key }}
       {% if value is mapping %}
           <ul>{{ loop(value.items()) }}</ul>
       {% else %}
-           : {{ value }}
+           : {{ value }} <br>
       {% endif %}
     </li>
+  {% endfor %} -->
+
+  {% for key,value in text.items() recursive %}
+      {{loop.depth*'+'}} {{ key }} <!--Top level key-->
+      {% if value is mapping %}
+          <br>{{ loop(value.items()) }}
+      {% else %}
+           : {{ value }} <br>
+      {% endif %}
+
   {% endfor %}
 
   {% else %}
