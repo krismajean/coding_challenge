@@ -1,11 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
-  {% if key %}
-    <h1> Key {{ key }} removed </h1>
+<div class="container">
+  {% if text %}
+
+  {% for key,value in text.items() recursive %}
+      <li>{{ key }}
+      {% if value is mapping %}
+          <ul>{{ loop(value.items()) }}</ul>
+      {% else %}
+           :{{ value }}
+      {% endif %}
+    </li>
+  {% endfor %}
+
   {% else %}
-    <h1> Key Not Detected </h1>
+      <h1> Text Not Detected </h1>
   {% endif %}
 </div>
 {% endblock %}

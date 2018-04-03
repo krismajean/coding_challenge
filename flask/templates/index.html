@@ -1,16 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
+<div class="container" id="most_common_word">
   <h2> Most common word: {{ mostCommon }} </h2>
   <hr>
 </div>
-<div>
+<div class="container" id="pretty_print">
   {% if text %}
-    {% for key, value in text.items() %}
-      <li>{{ key }}: {{value}}
-    {% endfor %}
-      </li>
+
+  {% for key,value in text.items() recursive %}
+      <li>{{ key }} <!--Top level key-->
+      {% if value is mapping %}
+          <ul>{{ loop(value.items()) }}</ul>
+      {% else %}
+           : {{ value }}
+      {% endif %}
+    </li>
+  {% endfor %}
+
+  {% else %}
+      <h1> Text Not Detected </h1>
   {% endif %}
 </div>
 <hr>
