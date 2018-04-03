@@ -22,7 +22,6 @@ class DeleteForm(FlaskForm):
     comment = StringField("Comment", validators=[DataRequired()])
     key = StringField("Key", validators=[DataRequired()])
 
-
 dictionary = {
     'a' : {'a1': 'apple value_a1','a2': 'angry apple value_a2'},
     'b' : {'key_2': 'value_2'},
@@ -83,18 +82,18 @@ def most_common_word(nested_dictionary):
 @app.route('/set/<key>/', methods=("POST",))
 @app.route('/set/<key>/<value>', methods=("POST",))
 def set(key=None, value=None):
-    form = CommentForm()
-    if form.validate_on_submit():
-        #comments = session.pop('key', [])
-        #comments.append(form.comment.data)
-        #session['comments'] = comments
-        flash("You have added a new comment")
-        return redirect(url_for("index"))
-    #try:
-    #    dictionary[key] = value
-    #    return render_template('set.html', title="Set Key Value",key=key, value=value)
-    #except:
-    #    return
+    # form = CommentForm()
+    # if form.validate_on_submit():
+    #     #comments = session.pop('key', [])
+    #     #comments.append(form.comment.data)
+    #     #session['comments'] = comments
+    #     flash("You have added a new comment")
+    #     return redirect(url_for("index"))
+    try:
+       dictionary[key] = value
+       return render_template('set.html', title="Set Key Value",key=key, value=value)
+    except:
+       return
 
 @app.route('/del')
 @app.route('/del/<key>')
