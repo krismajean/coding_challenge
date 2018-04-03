@@ -35,6 +35,20 @@
 </div>
 <hr>
 
+<form method="POST" action="{{ url_for('set') }}">
+    {{ form.csrf_token }}
+    <p>
+      {{ form.key.label }} {{ form.key(row=1, cols=40)}}
+      {{ form.value.label }} {{ form.value(row=1, cols=40)}}
+      <input type="submit" value="Set key">
+    </p>
+    <p>
+      {{ form.key.label }} {{ form.key(row=1, cols=40)}}
+      <input type="submit" value="Del key">
+    </p>
+</form>
+
+<!--
 <form>
     Key: <input command="text" id="key">
     Value: <input command="text" id="value">
@@ -43,6 +57,6 @@
 <form>
     Key: <input command="text">
     <input type="submit" class="delete" value="Delete">
-</form>
+</form> -->
 
 {% endblock %}
