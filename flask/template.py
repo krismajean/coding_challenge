@@ -9,7 +9,6 @@ from flask_wtf import FlaskForm
 DEBUG = True
 SECRET_KEY = 'secret'
 
-
 app = Flask(__name__)
 app.config.from_object(__name__)
 
@@ -96,13 +95,18 @@ def set(key=None, value=None):
        return
 
 @app.route('/del')
-@app.route('/del/<key>')
+@app.route('/del/<path:key>')
 def delete(key=None):
-    try:
-        removed = dictionary.pop(key)
-        return render_template('del.html', title="Delete Key", key=key)
-    except:
-        return '<h1>Element %s does not exist</h1>' % key
+    key_list = key.split('/')
+    return str(key_list)
+
+    # try:
+    #     removed = dictionary.pop(key)
+    #     return render_template('del.html', title="Delete Key", key=key)
+    # except:
+    #     return '<h1>Element %s does not exist</h1>' % key
+
+
 
 @app.route('/')
 def index(form=None, mostCommon=None):
