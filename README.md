@@ -14,5 +14,5 @@ Install the following dependencies:
 `flask, wtforms, wtf_forms`
 
 To run
-`cd flask`
-`python3 template.py`
+
+`python3 flask/template.py`
