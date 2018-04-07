@@ -3,6 +3,7 @@
 # put online with Firebase
 
 import collections
+from collections import Counter, defaultdict
 
 global_dictionary = {
 'a' : {'a1': 'apple value_a1','a2': 'angry apple value_a2'},
@@ -25,21 +26,22 @@ def deep_list(dl,d):
     return dl
 
 def most_common_word(d):
-    wordcount = {}
-    ## create a dictionary of words from d1 and generate frequency count
-    dl =[]
-    wordlist = deep_list(dl,d)
-    #print(wordlist)
-    wordfreq = [wordlist.count(p) for p in wordlist]
-    #print(wordfreq)
-    wordcount = dict(zip(wordlist,wordfreq))
-    #print(wordcount)
-
-    ## search list for each word: found: +1 counter, notfound: add new words
-
-    v=list(wordcount.values())
-    k=list(wordcount.keys())
-    return k[v.index(max(v))]
+    #
+    # wordcount = {}
+    # ## create a dictionary of words from d1 and generate frequency count
+    # dl =[]
+    # wordlist = deep_list(dl,d)
+    # #print(wordlist)
+    # wordfreq = [wordlist.count(p) for p in wordlist]
+    # #print(wordfreq)
+    # wordcount = dict(zip(wordlist,wordfreq))
+    # #print(wordcount)
+    #
+    # ## search list for each word: found: +1 counter, notfound: add new words
+    #
+    # v=list(wordcount.values())
+    # k=list(wordcount.keys())
+    return "word"
 
 def print_dictionary(d, i=1):
     for k, v in d.items():
@@ -71,6 +73,11 @@ def set_list(user, element = None):
     #for k, v in d.items():
     #global_dictionary[key_list[0]] = ' '.join(user[2:]) #turns the last words into a string value #
 
+def set_dict(set_dict,key_list):
+    value = key_list.pop()
+    for key in key_list:
+
+
 def build_dictionary(d,k):
     if len(k) == 0:
         return update_dictionary(global_dictionary,d)
@@ -80,9 +87,7 @@ def build_dictionary(d,k):
         k.pop()
         build_dictionary(d0,k)
 
-def update_dictionary(d,u):
-    #print("Entered updated")
-    #print(u)
+def update_dictionary(dictionary,update):
     for k, v in u.items():
         if isinstance(v, collections.Mapping):
             d[k] = update_dictionary(d.get(k, {}), v)
