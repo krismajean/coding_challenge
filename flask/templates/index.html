@@ -4,6 +4,16 @@
   <h2> Most common word: {{ mostCommon }} </h2>
   <hr>
 </div>
+
+<div class="container" id="submission">
+<form method="POST" action="{{ url_for('handle_data') }}">
+    <!-- {{ form.csrf_token }} -->
+    <p>
+    <input type="text" name="command_key_value">
+    <input type="submit">
+    </p>
+</form>
+</div>
 <div class="container" id="pretty_print">
   {% if text %}
 
@@ -17,6 +27,7 @@
       {% endif %}
     </li>
   {% endfor %} -->
+
 
   {% for key,value in text.items() recursive %}
       {{loop.depth*'+'}} {{ key }} <!--Top level key-->
@@ -34,17 +45,6 @@
 </div>
 <hr>
 
-<form method="POST" action="{{ url_for('set') }}">
-    {{ form.csrf_token }}
-    <p>
-      {{ form.key.label }} {{ form.key(row=1, cols=40)}}
-      {{ form.value.label }} {{ form.value(row=1, cols=40)}}
-      <input type="submit" value="Set key">
-    </p>
-    <p>
-      {{ form.key.label }} {{ form.key(row=1, cols=40)}}
-      <input type="submit" value="Del key">
-    </p>
-</form>
+
 
 {% endblock %}

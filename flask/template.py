@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, session, redirect, url_for
+from flask import Flask, render_template, flash, session, redirect, url_for, request
 from collections import Counter, defaultdict
 import collections
 import copy
@@ -6,20 +6,19 @@ import copy
 from wtforms import StringField
 from wtforms.validators import DataRequired
 from flask_wtf import FlaskForm
-#from flask_wtf.recaptcha import RecaptchaField
 
 DEBUG = True
-SECRET_KEY = 'secret'
 
-app = Flask(__name__)
-app.config.from_object(__name__)
+# FOR SECURITY
+#
+SECRET_KEY = 'secret'
 
 class CommentForm(FlaskForm):
     key = StringField("Key", validators=[DataRequired()])
-    value = StringField("Value", validators=[DataRequired()])
 
-class DeleteForm(FlaskForm):
-    key = StringField("Key", validators=[DataRequired()])
+
+app = Flask(__name__)
+app.config.from_object(__name__)
 
 top_dictionary = {
     'a' : {'a1': 'apple value_a1','a2': 'angry apple value_a2'},
@@ -29,9 +28,6 @@ top_dictionary = {
     'e' : {'e1': {'e11' : 'welcome to the basement', 'e12' : 'dark'}, 'e2': 'happy' },
     'f' : 'funny you looked'
         }
-
-
-
 
 def build_dict(dictionary,key_list):
     if len(key_list) == 0:
@@ -124,7 +120,6 @@ def index(form=None, mostCommon=None):
     mostCommon = most_common_word(top_dictionary)
     if form is None:
         form = CommentForm()
-    comments = session.get("comments", [])
     return render_template("index.html",
                             form=form,
                             mostCommon=mostCommon,
@@ -133,6 +128,7 @@ def index(form=None, mostCommon=None):
 @app.route('/set/', methods=("POST","GET"))
 @app.route('/set/<path:key_value>', methods=("POST","GET"))
 def set(key_value=None,new_dict=top_dictionary):
+    print(key_value)
     if key_value is None: return redirect(url_for("index"))
     print(key_value)
     key_list = key_value.split('/')
@@ -141,7 +137,7 @@ def set(key_value=None,new_dict=top_dictionary):
     value = key_list.pop() # removes last element from key_list
     built = build_dict(value, key_list) # returns a {nested : {dictionary : value }}
     top_dictionary = update_dictionary(new_dict, built)
-    return redirect(url_for("index"))
+    #return redirect(url_for("index"))
 
 @app.route('/del/<path:keys>', methods=("POST","GET"))
 def delete(keys=None,dict_del=top_dictionary):
@@ -150,7 +146,27 @@ def delete(keys=None,dict_del=top_dictionary):
     if get_dictionary_value_with_key_list(dict_del, key_list) == None: redirect(url_for("index"))
     temp_dict = copy.deepcopy(dict_del)
     del_key(dict_del,key_list)
-    return redirect(url_for("index"))
+    #return redirect(url_for("index"))
+
+@app.route('/handle_data', methods=['POST'])
+def handle_data():
+    command_key_value = request.form['command_key_value'].split()
+    print(command_key_value)
+    if command_key_value[0] == 'set':
+        value = ' '.join(command_key_value[2:])
+        key_list = command_key_value[1]
+        key_value = key_list + '/' + value
+        set(key_value)
+        return redirect(url_for("index"))
+
+## If del --> 1) Check if value exists Yes: Delete w/ dependents No: Err
+    elif command_key_value[0] == 'del':
+        key_list = command_key_value[1]
+        delete(key_list)
+        return redirect(url_for("index"))
+
+    else:
+        return redirect(url_for("index"))
 
 if __name__ == '__main__':
     app.run(debug=True)  ## DO NOT KEEP TRUE WHEN PUBLISHING
