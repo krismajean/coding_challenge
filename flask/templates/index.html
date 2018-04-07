@@ -6,8 +6,11 @@
 </div>
 
 <div class="container" id="submission">
+<strong>Commands:</strong>
+<i>set</i> path/of/keys value &nbsp; &nbsp;
+<i>del</i> path/of/keys
 <form method="POST" action="{{ url_for('handle_data') }}">
-    <!-- {{ form.csrf_token }} -->
+    {{ form.csrf_token }}
     <p>
     <input type="text" name="command_key_value">
     <input type="submit">
