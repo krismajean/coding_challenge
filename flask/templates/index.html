@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block content %}
 <div class="container" id="most_common_word">
   <h2> Most common word: {{ mostCommon }} </h2>
@@ -47,16 +46,5 @@
       <input type="submit" value="Del key">
     </p>
 </form>
-
-<!--
-<form>
-    Key: <input command="text" id="key">
-    Value: <input command="text" id="value">
-    <input type="submit" class="set" value="Set">
-</form>
-<form>
-    Key: <input command="text">
-    <input type="submit" class="delete" value="Delete">
-</form> -->
 
 {% endblock %}
