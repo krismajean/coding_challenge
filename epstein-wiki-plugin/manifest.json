@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Epstein Files Wiki Linker",
+  "version": "1.0.0",
+  "description": "Highlights names of people mentioned in the Epstein files and links to their Wikipedia section.",
+  "permissions": ["storage", "alarms"],
+  "host_permissions": ["https://en.wikipedia.org/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["names.js", "content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.svg",
+    "48": "icons/icon48.svg",
+    "128": "icons/icon128.svg"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.svg",
+      "48": "icons/icon48.svg"
+    }
+  }
+}
