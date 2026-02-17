@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 300px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 14px;
+      color: #222;
+      margin: 0;
+    }
+    h2 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: #36c;
+    }
+    p {
+      margin: 0 0 10px;
+      line-height: 1.5;
+    }
+    a {
+      color: #36c;
+    }
+    .count {
+      background: #f0f4ff;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h2>Epstein Files Wiki Linker</h2>
+  <p>
+    This extension highlights names of people mentioned in the
+    <a href="https://en.wikipedia.org/wiki/List_of_people_named_in_the_Epstein_files"
+       target="_blank" rel="noopener">Epstein files</a>
+    and adds a small <strong>W</strong> icon linking to their Wikipedia section.
+  </p>
+  <div class="count">
+    Tracking <strong id="name-count">0</strong> names across the web.
+  </div>
+  <script src="names.js"></script>
+  <script>
+    document.getElementById("name-count").textContent = EPSTEIN_NAMES.length;
+  </script>
+</body>
+</html>

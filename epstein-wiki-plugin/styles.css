@@ -1,0 +1,27 @@
+.epstein-wiki-name {
+  /* No visible change to the text itself — keep it natural */
+  position: relative;
+}
+
+.epstein-wiki-link {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 2px;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.epstein-wiki-link:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.epstein-wiki-icon {
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  display: inline-block;
+}
