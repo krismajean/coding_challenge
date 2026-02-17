@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Epstein Files Wiki Linker",
+  "name": "Sunshine",
   "version": "1.0.0",
-  "description": "Highlights names of people mentioned in the Epstein files and links to their Wikipedia section.",
+  "description": "Sunlight is the best disinfectant. Highlights names from accountability databases and links to their sources.",
   "permissions": ["storage", "alarms"],
   "host_permissions": ["https://en.wikipedia.org/*"],
   "background": {

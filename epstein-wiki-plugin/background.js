@@ -34,7 +34,7 @@ async function fetchNamesFromWiki() {
 
     return names;
   } catch (err) {
-    console.warn("[Epstein Wiki Linker] Failed to fetch from Wikipedia:", err);
+    console.warn("[Sunshine] Failed to fetch from Wikipedia:", err);
     return null;
   }
 }
@@ -57,7 +57,7 @@ async function maybeUpdateCache() {
       },
     });
     console.log(
-      `[Epstein Wiki Linker] Cached ${names.length} names from Wikipedia`
+      `[Sunshine] Cached ${names.length} names from Wikipedia`
     );
   }
 }

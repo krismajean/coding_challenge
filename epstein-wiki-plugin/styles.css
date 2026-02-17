@@ -1,25 +1,24 @@
-.epstein-wiki-name {
-  /* No visible change to the text itself — keep it natural */
+.sunshine-name {
   position: relative;
 }
 
-.epstein-wiki-link {
+.sunshine-link {
   display: inline-block;
   vertical-align: middle;
   margin-left: 2px;
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
-  opacity: 0.75;
+  opacity: 0.8;
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
-.epstein-wiki-link:hover {
+.sunshine-link:hover {
   opacity: 1;
-  transform: scale(1.2);
+  transform: scale(1.25);
 }
 
-.epstein-wiki-icon {
+.sunshine-icon {
   width: 14px;
   height: 14px;
   vertical-align: middle;

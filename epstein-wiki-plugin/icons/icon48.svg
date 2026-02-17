@@ -1,4 +1,11 @@
 <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="24" cy="24" r="22" fill="#36c" stroke="#1a3d7c" stroke-width="1"/>
-  <text x="24" y="33" text-anchor="middle" fill="#fff" font-size="28" font-family="serif" font-weight="bold">W</text>
+  <circle cx="24" cy="24" r="11" fill="#f5a623"/>
+  <line x1="24" y1="2" x2="24" y2="9" stroke="#f5a623" stroke-width="3" stroke-linecap="round"/>
+  <line x1="24" y1="39" x2="24" y2="46" stroke="#f5a623" stroke-width="3" stroke-linecap="round"/>
+  <line x1="2" y1="24" x2="9" y2="24" stroke="#f5a623" stroke-width="3" stroke-linecap="round"/>
+  <line x1="39" y1="24" x2="46" y2="24" stroke="#f5a623" stroke-width="3" stroke-linecap="round"/>
+  <line x1="8.44" y1="8.44" x2="13.39" y2="13.39" stroke="#f5a623" stroke-width="3" stroke-linecap="round"/>
+  <line x1="34.61" y1="34.61" x2="39.56" y2="39.56" stroke="#f5a623" stroke-width="3" stroke-linecap="round"/>
+  <line x1="8.44" y1="39.56" x2="13.39" y2="34.61" stroke="#f5a623" stroke-width="3" stroke-linecap="round"/>
+  <line x1="34.61" y1="13.39" x2="39.56" y2="8.44" stroke="#f5a623" stroke-width="3" stroke-linecap="round"/>
 </svg>

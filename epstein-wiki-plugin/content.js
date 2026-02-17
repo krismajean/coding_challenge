@@ -9,7 +9,7 @@
     return;
   }
 
-  const MARKER_ATTR = "data-epstein-wiki-linked";
+  const MARKER_ATTR = "data-sunshine-linked";
 
   // Build a lookup: lowercase name/alias -> { anchor, displayName }
   function buildLookup(namesList) {
@@ -48,13 +48,20 @@
     link.href = `${WIKI_BASE_URL}#${anchor}`;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
-    link.className = "epstein-wiki-link";
+    link.className = "sunshine-link";
     link.title = `${displayName} — Epstein Files (Wikipedia)`;
 
-    // Inline SVG icon: a small "W" in a circle
-    link.innerHTML = `<svg class="epstein-wiki-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="10" cy="10" r="9" fill="#36c" stroke="#fff" stroke-width="1"/>
-      <text x="10" y="14.5" text-anchor="middle" fill="#fff" font-size="11" font-family="serif" font-weight="bold">W</text>
+    // Inline SVG icon: a small sunshine
+    link.innerHTML = `<svg class="sunshine-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="10" cy="10" r="4.5" fill="#f5a623"/>
+      <line x1="10" y1="1.5" x2="10" y2="4" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="10" y1="16" x2="10" y2="18.5" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="1.5" y1="10" x2="4" y2="10" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="16" y1="10" x2="18.5" y2="10" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="3.99" y1="3.99" x2="5.76" y2="5.76" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="14.24" y1="14.24" x2="16.01" y2="16.01" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="3.99" y1="16.01" x2="5.76" y2="14.24" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="14.24" y1="5.76" x2="16.01" y2="3.99" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/>
     </svg>`;
 
     return link;
@@ -81,7 +88,7 @@
         const parent = node.parentElement;
         if (!parent) return NodeFilter.FILTER_REJECT;
         if (parent.closest(`[${MARKER_ATTR}]`)) return NodeFilter.FILTER_REJECT;
-        if (parent.classList?.contains("epstein-wiki-link"))
+        if (parent.classList?.contains("sunshine-link"))
           return NodeFilter.FILTER_REJECT;
         if (SKIP_TAGS.has(parent.tagName)) return NodeFilter.FILTER_REJECT;
         if (parent.isContentEditable) return NodeFilter.FILTER_REJECT;
@@ -129,7 +136,7 @@
         if (info) {
           const wrapper = document.createElement("span");
           wrapper.setAttribute(MARKER_ATTR, "true");
-          wrapper.className = "epstein-wiki-name";
+          wrapper.className = "sunshine-name";
           wrapper.textContent = m.matchedText;
           wrapper.appendChild(createIcon(info.anchor, info.displayName));
           frag.appendChild(wrapper);
